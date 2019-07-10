@@ -1,0 +1,15 @@
+This folder contains the solution to all the exercises proposed in the Numerical Simulation Laboratory in the a.y. 2018/2019.
+There is one folder labeled es_* for each of the 12 exercise.
+Each folder contains:
+	- a Makefile to compile all the relevant code
+	- a cpp file es_*.cpp which holds the solution to the exercise 
+	- some eventual additional files that may be required for es_*.cpp to work
+	- some output files that are required by the exercise
+	- a jupyter file ... which explains how the exercise has been tackled and present the required output of the program
+In the main folder there is also a file standard_header.h which keeps together the useful declaration common to all exercises.
+In a folder general_code/ there is the definition of some function (all declared in standard_header.h) that are used in some exercises as well as the definition and declaration of class Random to generate random numbers (used in every exercise).
+There are two more folders:
+	- particle_simulator/: holds definition and declaration of the classe particle_simulator, required to solve easily exercise 4 and exercise 7
+	- GA_helper/: holds definition and declaration of class individual_type and some additional functions that are useful to solve the TSP problem, required for exercises 9 and 10
+
+

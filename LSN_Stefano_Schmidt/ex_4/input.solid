@@ -1,0 +1,17 @@
+NVE
+0.8
+108
+1.1
+2.5
+0.0005
+25
+100
+
+  ReadInput >> type
+  ReadInput >> temp;
+  ReadInput >> npart;
+  ReadInput >> rho;
+  ReadInput >> rcut;
+  ReadInput >> delta;
+  ReadInput >> n_meas;
+  ReadInput >> n_bins;
