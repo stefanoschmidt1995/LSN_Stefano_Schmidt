@@ -1,3 +1,9 @@
+/*************************************************************************
+STEFANO SCHMIDT - NUMERICAL SIMULATION LABORATORY
+CLASS PARTICLE SIMULATOR - DEFINITIONS
+**************************************************************************
+Definitions of class particle simulator declared in particle_simulator.h
+*************************************************************************/
 #include "../standard_header.h"
 #include "particle_simulator.h"
 
@@ -188,18 +194,13 @@ particle_simulator::move_NVT(){
 			new_state.at(i) = Pbc( old.at(i) + delta*(rng.Rannyu() - 0.5) ); //Eccolo l'inghippo!!!!
 		energy_new = particle_energy(new_state,o);
 
-			//std::cerr << "old: " << old[0] <<" " << old[1] <<" " << old[2] <<" " << std::endl;//DEBUG
-			//std::cout << "new: " << new_state[0] <<" " << new_state[1] <<" " << new_state[2] <<" " <<o<< std::endl;//DEBUG
-
 			//Metropolis test
 		p = exp(beta*(energy_old-energy_new)); //acceptance
-				//std::cout<< "energies " << energy_new << " \t" << energy_old<< " \t" <<p << std::endl;//DEBUG*/
 		if(p >= rng.Rannyu()){ //Update the state if the move is accepted
 			for(int j=0; j<3; j++)		
 				state[o][j] = new_state[j];
 			accepted++;
 		}
-			//std::cerr << " random number: " << rng.Rannyu()<< std::endl; //DEBUG
 	}
 	//std::cout <<" success rate: "<< get_success_rate() << std::endl;
 }
@@ -223,8 +224,6 @@ particle_simulator::particle_energy(R3_point x, int ip){
 			for(int k=0; k<3; k++)
 				dr+= pow(Pbc(x[k]- state[i][k]),2);
 			dr = sqrt(dr);
-			//if(dr<1e-3) std::cerr << "\t\t\t ciao" << std::endl; //DEBUG
-//			std::cerr << dr << std::endl; //DEBUG
 			if(dr < rcut)
 				ene += 1.0/pow(dr,12) - 1.0/pow(dr,6);
 		}
@@ -290,7 +289,6 @@ particle_simulator::measure(){
 	t = t/(double)N; 			//Kinetic energy per particle
 	meas_etot = (t+v); 			//Total energy per particle
 	p = rho*temp + w*N/(3.*vol) + ptail; 	//pressure
-	//std::cerr << p << "\t"<< rho*temp << "\t" << w*N/(3.*vol) <<"\t"<< ptail << std::endl;//DEBUG
 
 	measure_vector[0]->push_back(meas_etot); 	//E_tot
 	measure_vector[1]->push_back(t);	 	//E_kin
@@ -314,14 +312,11 @@ particle_simulator::get_g_hist(){
 	std::vector<double> bin_vector(hist_list.size());
 	for (int i =0; i <n_bins; i++){
 		std::fill(bin_vector.begin(), bin_vector.end(), 0);
-		//std::cout << "Bin vector "<< i << std::endl;//DEBUG
 		int j=0;
 		for(auto it = hist_list.begin(); it!= hist_list.end(); it++){
 			bin_vector.at(j) = (double) (*it)->at(i);
-			//std::cout << bin_vector[j] <<" ";//DEBUG
 			j++;
 		}
-		//std::cout << std::endl;
 		double r =  ((double)i+.5)*bin_size;
 		double norm_factor = ((4.*M_PI/3.)*(pow(r+bin_size,3)-pow(r,3)));
 
@@ -330,8 +325,6 @@ particle_simulator::get_g_hist(){
 		res[i].at(0) = r;
 		res[i].at(1) = avg[0]/ norm_factor;
 		res[i].at(2) = avg[2] /norm_factor;
-		//std::cout << res[i][0] << "\t" << res[i][1] << "\t" <<res[i][2] << "\t" <<std::endl;
-		//res[i][1] = (hist_list.back())->at(i); //DEBUG
 	}
 
 	return res;
@@ -526,8 +519,6 @@ particle_simulator::write_hist(std::string filename){
 	write_conf.open(filename);
 	std::vector<std::vector<double>> hist_to_write(get_g_hist());
 	
-	//std::cout << hist_to_write.size() << " " << hist_to_write[0].size() <<std::endl;//DEBUG
-
 	for (int i = 0; i<n_bins; i++)
 		write_conf << (hist_to_write[i]).at(0) << " " << (hist_to_write[i]).at(1) << " " << (hist_to_write[i]).at(2) <<std::endl;
 

@@ -1,3 +1,9 @@
+/*************************************************************************
+STEFANO SCHMIDT - NUMERICAL SIMULATION LABORATORY
+PARTICLE SIMULATOR CLASS - DECLARATION
+**************************************************************************
+Declaration of class particle_simulator to sample from configuration of system of particle interacting with LJ potential
+*************************************************************************/
 #ifndef __particle_simulator_class_
 #define __particle_simulator_class_
 
