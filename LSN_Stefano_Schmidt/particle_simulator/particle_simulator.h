@@ -3,12 +3,11 @@ STEFANO SCHMIDT - NUMERICAL SIMULATION LABORATORY
 PARTICLE SIMULATOR CLASS - DECLARATION
 **************************************************************************
 Declaration of class particle_simulator to sample from configuration of system of particle interacting with LJ potential
+Class meant to sample from configuration of a system of particle interactia via LJ potential.
+The thermodinamical system can be uniquely defined either by NVE either by NVT thermodinamical variables 
 *************************************************************************/
 #ifndef __particle_simulator_class_
 #define __particle_simulator_class_
-
-//class meant to sample from configuration of a system of particle interactia via LJ potential.
-//The thermodinamical system can be defined either by NVE either by NVT thermodinamical variables 
 
 #include"../standard_header.h"
 
