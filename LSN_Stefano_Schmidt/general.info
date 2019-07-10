@@ -1,8 +1,8 @@
 This folder contains the solution to all the exercises proposed in the Numerical Simulation Laboratory in the a.y. 2018/2019.
 There is one folder labeled es_* for each of the 12 exercise.
 Each folder contains:
-	- a Makefile to compile all the relevant code
-	- a cpp file es_*.cpp which holds the solution to the exercise 
+	- a Makefile to compile all the relevant code (make is enough to generate file ex_*.exe which solves the exercise)
+	- a cpp file ex_*.cpp which holds the solution to the exercise 
 	- some eventual additional files that may be required for es_*.cpp to work
 	- some output files that are required by the exercise
 	- a jupyter file ... which explains how the exercise has been tackled and present the required output of the program
