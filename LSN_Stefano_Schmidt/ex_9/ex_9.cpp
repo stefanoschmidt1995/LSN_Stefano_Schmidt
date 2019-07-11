@@ -45,9 +45,9 @@ main (int argc, char *argv[]){
 	}
 
 	individual_type best_individual(population->at(0)); //it's not important who is the actual best individual at time 0
+	std::vector<double> fitness_rank(M);
 
 	for(int n_gen=0; n_gen<N_gen; n_gen++){
-		std::vector<double> fitness_rank(M);
 		if (n_gen%25==0){
 			std::cout << "Generation # " << n_gen <<std::endl;
 			best_individual.print_path_to_file("./paths/"+std::to_string(n_gen)+".dat");
@@ -64,6 +64,8 @@ main (int argc, char *argv[]){
 		population_type* new_population = new population_type(M);
 
 		fitness_rank = get_fitness_rank(population);
+			//for choosing who shall reproduce the fitness of each individual is squared (way to give more importance to fitter individual)
+		for(auto it= fitness_rank.begin(); it!=fitness_rank.end(); it++) *it *=  *it;
 		int fitter_index = std::distance(fitness_rank.begin(), std::max_element(fitness_rank.begin(),fitness_rank.end()));
 		if((population->at(fitter_index)).path_lenght() < best_individual.path_lenght()) //saving best individual in the new population
 			best_individual = population->at(fitter_index);
